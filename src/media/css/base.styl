@@ -1,0 +1,57 @@
+#page {
+    padding-top: 0;
+}
+
+.site-header .site {
+    width: 202px;
+}
+
+body[data-page-type] {
+    > main {
+        padding: 48px 0;
+
+        #page {
+            padding: 0;
+        }
+    }
+}
+
+.only-logged-in,
+.site-header > nav > .only-logged-in {
+    display: none;
+
+    .logged-in & {
+        display: inline-block;
+    }
+}
+
+.project {
+    border-left: 1px dotted #999;
+    color: #E66000;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    line-height: 30px;
+    margin-left: 12px;
+    padding: 3px 0 0 12px;
+}
+
+.island {
+    margin: 40px 0;
+    padding: 20px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 300;
+        color: #1a1a1a;
+        line-height: 1.2;  // 24px
+    }
+}
