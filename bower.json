@@ -5,6 +5,7 @@
     "dependencies": {
         "commonplace": "*",
         "marketplace-constants": "*",
+
         "almond": "0.2.9",
         "jquery": "2.0.2",
         "nunjucks": "1.0.0",
