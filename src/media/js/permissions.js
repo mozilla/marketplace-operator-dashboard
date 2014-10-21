@@ -8,7 +8,7 @@ define('permissions', ['defer', 'requests', 'settings', 'underscore', 'urls'],
 
     function fetch() {
         var def = defer.Deferred();
-        requests.get(urls.api.unsigned.url('permissions')).done(function(data) {
+        requests.get(urls.api.base.url('permissions')).done(function(data) {
             def.resolve(data);
         });
         return def.promise();

@@ -33,15 +33,10 @@ function() {
 
     z.body.addClass('html-' + require('l10n').getDirection());
 
-    // Redirect to login if necessary.
-    z.page.on('navigate', function(e, url) {
-        if (url == urls.reverse('login')) {
-            return;
-        }
-        if (!user.logged_in()) {
-            z.page.trigger('divert', [urls.reverse('login')]);
-        }
-    });
+    function show_login() {
+        z.body.removeClass('logged-in');
+        z.page.trigger('divert', [urls.reverse('login')]);
+    }
 
     // Do some last minute template compilation.
     z.page.on('reload_chrome', function() {
@@ -55,6 +50,21 @@ function() {
         z.body.toggleClass('logged-in', require('user').logged_in());
         z.page.trigger('reloaded_chrome');
     }).trigger('reload_chrome');
+
+    // Redirect to login if necessary.
+    z.page.on('navigate', function(e, url) {
+        if (url == urls.reverse('login')) {
+            return;
+        }
+        if (!user.logged_in()) {
+            show_login();
+        }
+    });
+
+    // Show login screen when user logs out.
+    z.page.on('logged_out', function() {
+        show_login();
+    });
 
     permissions.promise.done(function(data) {
         console.log('Permissions:', data);
