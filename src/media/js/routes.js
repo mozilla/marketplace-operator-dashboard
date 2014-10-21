@@ -18,5 +18,4 @@ define('routes', [
     }
     return routes;
 });
-
 })();
