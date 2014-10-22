@@ -2,8 +2,26 @@
   <h1 class="site"><a href="/" rel="external"><span class="wordmark">Firefox Marketplace</span></a></h1>
   <a href="{{ url('home') }}" class="project">{{ _('Operator Dashboard') }}</a>
   <span class="flex-shift"></span>
-  <span class="flex-span"></span>
-  <a href="/settings" class="only-logged-in email">
-    <b>{{ user.get_setting('email') }}</b></a>
+  <button id="current_operator">{{ current_operator.carrier }} / {{ current_operator.region }}</button>
+  <span class="flex-shift"></span>
+  <span class="only-logged-in email">{{ user.get_setting('email') }}</span>
   <a class="logout only-logged-in" href="#">{{ _('Sign Out') }}</a>
 </nav>
+
+<menu id="operator_selection">
+  <form>
+    <label>{{ _('Switch to:') }}
+      <select>
+        <option selected>--</option>
+        {% for operator in all_operators %}
+          {% if not (operator.carrier == current_operator.carrier and operator.region == current_operator.region) %}
+            <option data-carrier="{{ operator.carrier }}" data-region="{{ operator.region }}">
+              {{ operator.carrier }} / {{ operator.region }}
+            </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </label>
+    <button class="button t action" type="Submit">{{ _('Go') }}</button>
+  </form>
+</menu>
