@@ -1,8 +1,7 @@
-define('views/home', ['l10n'], function(l10n) {
-    var gettext = l10n.gettext;
+define('views/home', ['urls', 'z'], function(urls, z) {
+	// Eventually there will be a proper homepage here. For now, let's just
+	// divert to the opshelf listing page.
     return function(builder) {
-        builder.start('shelf-listing.html');
-        builder.z('type', 'shelf-listing');
-        builder.z('title', gettext('Operator Shelves'));
+        z.page.trigger('divert', [urls.reverse('shelf_listing')]);
     };
 });
