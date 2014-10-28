@@ -3,7 +3,7 @@
     "name": "marketplace-operator-dashboard",
     "version": "0.0.1",
     "dependencies": {
-        "commonplace": "*",
+        "commonplace": "0.6.0",
         "marketplace-constants": "*",
 
         "almond": "0.2.9",
