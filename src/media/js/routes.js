@@ -6,6 +6,7 @@ var root = '^/operators';
 var routes = window.routes = [
     {'pattern': root + '$', 'view_name': 'home'},
     {'pattern': root + '/shelves$', 'view_name': 'shelf_listing'},
+    {'pattern': root + '/shelves/create$', 'view_name': 'shelf_create'},
     {'pattern': root + '/error$', 'view_name': 'error'},
     {'pattern': root + '/unauthorized$', 'view_name': 'unauthorized'},
     {'pattern': root + '/login$', 'view_name': 'login'},
@@ -14,6 +15,7 @@ var routes = window.routes = [
 define('routes', [
     'views/home',
     'views/shelf_listing',
+    'views/shelf_create',
     'views/error',
     'views/unauthorized',
     'views/login',

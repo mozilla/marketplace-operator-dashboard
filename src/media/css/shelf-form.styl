@@ -1,0 +1,243 @@
+[data-page-type="shelf_create"] {
+    #page {
+        margin: 0 auto;
+        width: 1150px;
+    }
+    
+    .locale-switcher {
+        margin: -25px 0;
+        text-align: right;
+        
+        select:focus {
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+}
+
+#shelf-form {
+    float: left;
+    width: 750px;
+}
+
+#shelf-preview {
+    float: right;
+    position: relative;
+    width: 360px;
+    
+    // Prevent interaction with the preview.
+    &:after{
+        content: ''
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+    section {
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        position: relative;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    h3 {
+        background-color: #4cb1ff;
+        bottom: 0;
+        color: #FFF;
+        font-size: 12px;
+        font-weight: 500;
+        height: 30px;
+        line-height: 1;
+        padding: 10px 20px;
+        position: absolute;
+        text-transform: uppercase;
+        width: 100%;
+    }
+    
+    .phone {
+        background: #000;
+        border-radius: 30px 30px 0 0;
+        cursor: default;
+        padding: 50px 20px 0;
+    }
+    
+    .screen {
+        background: #E7E7E7;
+        border-radius: 5px 5px 0 0;
+        line-height: 1;
+        min-height: 50px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .item {
+        line-height: 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .curve {
+        bottom: 0;
+        border-radius: 50% 50% 0px 0px;
+        height: 67px;
+        left: -50px;
+        position: absolute;
+        width: 400px;
+        z-index: 10;
+    }
+    
+    .title {
+        bottom: 0;
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 300;
+        left: 0;
+        line-height: 25px;
+        max-width: 100%;
+        overflow: hidden;
+        padding: 0 10px;
+        position: absolute;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        z-index: 11;
+    }
+    
+    .description {
+        background: #FFF;
+        box-shadow: 0 2px 1px -1px #C7C7C7;
+        color: #797979;
+        display: none;
+        font-size: 15px;
+        line-height: 22px;
+        padding: 20px;
+    }
+
+    [data-for="feed"] {
+        .screen {
+            padding: 10px 10px 60px;
+
+            &:after {
+                background: url('../img/sample/feed_item.png') no-repeat;
+                background-size: 300px auto;
+                bottom: 0;
+                content: '';
+                display: block;
+                height: 50px;
+                left: 50%;
+                margin-left: -150px;
+                opacity: 0.5;
+                position: absolute;
+                width: 300px;
+            }
+        }
+        .item {
+            border-radius: 5px;
+        }
+        img {
+            height: 90px;
+            width: 300px;
+        }
+        .curve {
+            bottom: -24px;
+        }
+        .title {
+            bottom: 5px;
+        }
+    }
+    
+    [data-for="detail"] {
+        .screen {
+            padding-bottom: 55px;
+            
+            &:after {
+                background: url('../img/sample/shelf_apps.png') no-repeat;
+                background-size: 300px auto;
+                bottom: 0;
+                content: '';
+                display: block;
+                height: 44px;
+                left: 50%;
+                margin-left: -150px;
+                opacity: 0.5;
+                position: absolute;
+                width: 300px;
+            }
+        }
+        img {
+            height: 150px;
+            width: 320px;
+        }
+        .title {
+            bottom: 15px;
+        }
+    }
+
+}
+
+
+// Operator shelf colors and regions.
+$default_shelf_color = #ce001c;
+$movistar_regions = (mx co ar uy pe es cl ve ec gt sv ni pa cr);
+$movistar_color = #7AB800;
+$vivo_regions = (br);
+$vivo_color = #FF9900;
+$o2_regions = (de)
+$o2_color = #000066;
+$telenor_regions = (hu me rs bd)
+$telenor_color = #00ACE7;
+$grameenphone_regions = (bd);
+$grameenphone_color = #00ACE7;
+$tmobile_regions = (hu pl);
+$tmobile_color = #E20074;
+
+.curve {
+    background-color: rgba($default_shelf_color, 0.6);
+
+    [data-carrier="telefonica"]& {
+        for region in $movistar_regions {
+            [data-region={region}]& {
+                background-color: rgba($movistar_color, 0.6);
+            }
+        }
+        for region in $vivo_regions {
+            [data-region={region}]& {
+                background-color: rgba($vivo_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="o2"]& {
+        for region in $o2_regions {
+            [data-region={region}]& {
+                background-color: rgba($o2_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="telenor"]& {
+        for region in $telenor_regions {
+            [data-region={region}]& {
+                background-color: rgba($telenor_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="grameenphone"]& {
+        for region in $grameenphone_regions {
+            [data-region={region}]& {
+                background-color: rgba($grameenphone_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="deutsche_telekom"]& {
+        for region in $tmobile_regions {
+            [data-region={region}]& {
+                background-color: rgba($tmobile_color, 0.6);
+            }
+        }
+    }
+}
