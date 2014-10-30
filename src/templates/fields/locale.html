@@ -1,0 +1,28 @@
+{% macro locale_textarea(name, lang, val, max) %}
+  <textarea name="{{ name }}-{{ lang }}"
+            placeholder="Localized in {{ lang }}"
+            {% if max %}maxlength={{ max }}{% endif %}
+            data-name="{{ name }}" data-lang="{{ lang }}"
+            class="localized{% if lang != 'en-US' %} hidden{% endif %}">
+    {{ val }}
+  </textarea>
+{% endmacro %}
+
+{% macro locale_input(name, lang, val, klass, placeholder) %}
+  <input name="{{ name }}-{{ lang }}" type="text"
+         placeholder="{{ placeholder or 'Localized in'}} {{ lang }}"
+         data-name="{{ name }}" data-lang="{{ lang }}"
+         class="localized{% if lang != 'en-US' %} hidden{% endif %} {{ klass if klass }}"
+         value="{{ val }}">
+{% endmacro %}
+
+<div class="locale-switcher">
+  <label for="locale-switcher">{{ _('Localize for:') }}</label>
+  <select id="locale-switcher">
+    {% for lang in settings.languages %}
+      <option value="{{ lang }}"{% if lang == 'en-US' %} selected{% endif %}>
+        {{ lang }}
+      </option>
+    {% endfor %}
+  </select>
+</div>

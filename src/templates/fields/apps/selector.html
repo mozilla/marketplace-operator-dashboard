@@ -1,0 +1,21 @@
+<div class="field app-selector" data-error-field="apps">
+
+  <label for="app-selector">{{ _('App') }}</label>
+  <input id="app-selector" type="search" placeholder="{{ _('Search for an app...') }}" autocomplete="off"></input>
+  <img class="chosen-icon">
+
+  <ul class="results">
+    <div class="paginator c" data-offset="0">
+      {# L10n: `prev` stands for previous. #}
+      <a class="prev">{{ _('&laquo; Prev Page') }}</a>
+      <a class="next">{{ _('Next Page &raquo;') }}</a>
+      <p class="desc"></p>
+    </div>
+  </ul>
+
+  <input name="app" type="hidden">
+  <div class="loading">
+    <i class="fa fa-spinner fa-spin"></i>
+  </div>
+
+</div>
