@@ -1,0 +1,7 @@
+<div class="field" data-error-field="name">
+  {% set name = obj.name if obj else {} %}
+  <label for="name" class="inline-label">{{ _('Name') }}</label>
+  {% for lang in settings.languages %}
+    {{ locale_input('name', lang, name[lang]) }}
+  {% endfor %}
+</div>

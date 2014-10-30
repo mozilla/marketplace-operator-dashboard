@@ -1,0 +1,120 @@
+form {
+
+    .field {
+        margin: 20px 0;
+        
+        &.textarea,
+        &.background-image {
+            label {
+                display: inline-block;
+                padding-top: 12px;
+                vertical-align: top;
+            }
+        }
+    }
+
+    .help-text,
+    .error-msg {
+        color: #858585;
+        font-size: 13px;
+        font-style: italic;
+        margin: 5px 0 0 125px;
+        width: 400px;
+    }
+
+    .apps-multiple .error-msg {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .has-error {
+        label,
+        .error-msg {
+            color: #f54b3c;
+        }
+
+        input[type=email],
+        input[type=text],
+        input[type=search],
+        input[type=url],
+        textarea {
+            border-color: #f54b3c;
+            // color: #f54b3c;
+
+            &:focus {
+                border-color: #f54b3c;
+            }
+        }
+    }
+
+    .inner {
+        display: inline-block;
+        width: 400px;
+    }
+
+    input[type="search"],
+    input[type="text"],
+    input[type="url"],
+    textarea {
+        background-color: #fff;
+        border: 1px solid #cbcbcb;
+        border-radius: 5px;
+        font-weight: 400;
+        font-size: 20px;
+        height: 40px;
+        padding: 0 10px;
+        width: 400px;
+        
+        &:focus {
+            border-color: #4cb1ff;
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+    
+    textarea{
+        display: inline-block;
+        height: 125px;
+        padding: 10px;
+        width: 500px;
+    }
+
+    label {
+        color: #858585;
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 10px;
+        text-align: right;
+        width: 110px;
+    }
+
+    option {
+        color: #797979
+        &.highlighted {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+    }
+    
+    .background-image {
+        .inner {
+            width: 550px;
+        }
+        .aviary {
+            > * {
+                display: inline-block;
+                vertical-align: top;
+            }
+            > .preview {
+                display: block;
+            }
+            .fileinput {
+                margin-left: 5px;
+            }
+            .help-text {
+                margin-left: 0;
+            }
+        }
+    }
+
+}

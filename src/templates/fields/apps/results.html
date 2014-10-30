@@ -1,0 +1,29 @@
+{% include '_macros/stars.html' %}
+
+<li class="result c" data-id="{{ id }}" data-rating="{{ rating }}" data-price="{{ price }}">
+  <img class="icon" src="{{ icon }}">
+  <div class="info">
+    <h3 class="name">
+      <a class="name" href="{{ detail_url }}" target="_blank">{{ name }}</a>
+      <div class="author" itemprop="author">{{ author or _('No Author') }}</div>
+    </h3>
+    <div class="compat-info">
+      <ul class="device-types" itemprop="device-types">
+        <li class="desktop{% if device_types.indexOf('desktop') == -1 %} unavailable{% endif %}"></li>
+        <li class="android{% if device_types.indexOf('android') == -1 and device_types.indexOf('android-mobile') == -1 and device_types.indexOf('android-tablet') == -1 %} unavailable{% endif %}"></li>
+        <li class="firefoxos{% if device_types.indexOf('firefoxos') == -1 %} unavailable{% endif %}"></li>
+      </ul>
+      {% if disabled_regions.length %}
+        <ul class="disabled-regions" itemprop="disabled-regions">
+          <span>{{ _('Disabled:') }}</span>
+          {% for disabled_region in disabled_regions %}
+            <li class="{{ disabled_region }}"></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    {% if with_actions %}
+      {% include "fields/apps/actions.html" %}
+    {% endif %}
+  </div>
+</li>
