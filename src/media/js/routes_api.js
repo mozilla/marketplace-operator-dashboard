@@ -16,5 +16,6 @@ define('routes_api', [], function() {
         'feed-shelves-list': '/api/v2/transonic/feed/shelves/?limit=5',
         'feed-shelf': '/api/v2/feed/shelves/{0}/',
         'feed-shelf-publish': '/api/v2/feed/shelves/{0}/publish/',
+        'feed-shelf-mine': '/api/v2/account/shelves/',
     };
 });

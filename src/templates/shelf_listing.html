@@ -1,5 +1,42 @@
+{% include '_macros/shelf.html' %}
+
 <section class="main island">
-	<a href="{{ url('shelf_create') }}">{{ _('New Shelf') }}</a>
-	<h2>{{ _('Active Operator Shelf') }}</h2>
-	<h2>{{ _('Inactive Operator Shelves') }}</h2>
+
+  {% defer (url=api('feed-shelf-mine')) %}
+    {% set active = this|for_current|active %}
+    {% set inactive = this|for_current|inactive %}
+
+    {% if active|length %}
+      <h2>{{ _('Active Shelf') }}</h2>
+      <ul>
+      {% for item in active %}
+        {{ shelf(item) }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if inactive|length %}
+      <h2>
+        {{ _plural('Inactive Shelf', 'Inactive Shelves', n=inactive|length) }} 
+        <span class="count">({{ inactive|length }})</span>
+      </h2>
+      <ul>
+      {% for item in inactive %}
+        {{ shelf(item) }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if not inactive|length and not active|length %}
+      <p>{{ _('There are no operator shelves.') }} <a href="{{ url('shelf_create') }}">{{ _('Create one?') }}</a></p>
+    {% else %}
+      <a href="{{ url('shelf_create') }}" class="create"><i class="fa fa-plus"></i>{{ _('New Shelf') }}</a>
+    {% endif %}
+
+  {% placeholder %}
+    <p>{{ _('Loading...') }}</p>
+  {% empty %}
+    <p>{{ _('There are no operator shelves.') }} <a href="{{ url('shelf_create') }}">{{ _('Create one?') }}</a></p>
+  {% end %}
+ 
 </section>

@@ -1,0 +1,14 @@
+{% macro shelf(shelf) %}
+  <li>
+    <a href="" class="shelf">
+      <h3>{{ shelf.name|translate(shelf) }}</h3>
+      <img src="{{ shelf.apps[0].icons[32] }}">
+      <span class="meta">{{ shelf.slug }} &mdash; {{ shelf.apps|length }} {{ _plural('App', 'Apps', n=shelf.apps|length) }} </span>
+    </a>
+    {% if shelf.is_published %}
+      <a class="button t cancel unpublish" href="">{{ _('Unpublish') }}</a>
+    {% else %}
+      <a class="button t action unpublish" href="">{{ _('Publish') }}</a>
+    {% endif %}
+  </li>
+{% endmacro %}
