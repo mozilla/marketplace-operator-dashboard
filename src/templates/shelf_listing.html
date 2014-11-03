@@ -2,13 +2,13 @@
 
 <section class="main island">
 
-  {% defer (url=api('feed-shelf-mine')) %}
+  {% defer (url=api('feed-shelf-mine'), nocache=true) %}
     {% set active = this|for_current|active %}
     {% set inactive = this|for_current|inactive %}
 
     {% if active|length %}
       <h2>{{ _('Active Shelf') }}</h2>
-      <ul>
+      <ul class="active_shelf">
       {% for item in active %}
         {{ shelf(item) }}
       {% endfor %}
@@ -20,7 +20,7 @@
         {{ _plural('Inactive Shelf', 'Inactive Shelves', n=inactive|length) }} 
         <span class="count">({{ inactive|length }})</span>
       </h2>
-      <ul>
+      <ul class="inactive_shelves">
       {% for item in inactive %}
         {{ shelf(item) }}
       {% endfor %}
