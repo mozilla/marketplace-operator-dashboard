@@ -32,12 +32,24 @@
     label {
         color: #666;
         display: inline-block;
+        margin: 0;
         text-transform: uppercase;
+        width: auto;
     }
 
     select {
         margin: 0 10px;
         text-transform: none;
+        
+        &:focus {
+            border-color: #4CB1FF;
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+    
+    button {
+        font-size: 12px;
     }
 }
 
