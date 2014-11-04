@@ -1,0 +1,26 @@
+<form class="c" id="shelf-{{ 'edit' if obj else 'create' }}">
+
+  <div id="shelf-form">
+    {% include 'fields/locale.html' %}
+
+    <section class="island">
+      <h2>{{ title or _('New Operator Shelf') }}</h2>
+      {% include 'fields/shelf/title.html' %}
+      {% include 'fields/shelf/slug.html' %}
+      {% include 'fields/shelf/description.html' %}
+      {% include 'fields/shelf/images.html' %}
+    </section>
+
+    <section class="island apps apps-multiple">
+      {% include 'fields/apps/multiple.html' %}
+    </section>
+
+    <section class="island submit">
+      <button class="button" type="submit">{{ _('Submit') }}</button>
+    </section>
+
+  </div>
+
+  {% include 'fields/shelf/preview.html' %}
+
+</form>

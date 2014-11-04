@@ -5,7 +5,7 @@ define('views/shelf_listing', ['jquery', 'l10n', 'notification', 'requests', 'ur
 
     z.body.on('click', '.inactive-shelves .activate', utils._pd(function(e) {
         // Confirm that the user wants to publish.
-        if (!window.confirm(gettext('Do you really want to activate this? It will deactivate any existing active shelves.'))) {
+        if (!window.confirm(gettext('Do you really want to activate this? It will deactivate any existing active shelves'))) {
             return;
         }
         // Publish the shelf.
@@ -13,7 +13,7 @@ define('views/shelf_listing', ['jquery', 'l10n', 'notification', 'requests', 'ur
             notification.notification({message: gettext('Successfully activated shelf.')});
             z.page.trigger('navigate', [window.location.pathname]);
         }).fail(function() {
-            notification.notification({message: gettext('Sorry, there was an error activating this shelf.')});
+            notification.notification({message: gettext('Sorry, there was an error activating this shelf')});
         });
     }))
 
@@ -24,10 +24,10 @@ define('views/shelf_listing', ['jquery', 'l10n', 'notification', 'requests', 'ur
         }
         // Publish the shelf.
         requests.del(urls.api.url('feed-shelf-publish', [$(this).closest('li').data('slug')])).done(function(data) {
-            notification.notification({message: gettext('Successfully deactivated.')});
+            notification.notification({message: gettext('Successfully deactivated')});
             z.page.trigger('navigate', [window.location.pathname]);
         }).fail(function() {
-            notification.notification({message: gettext('Sorry, there was an error deactivating this shelf.')});
+            notification.notification({message: gettext('Sorry, there was an error deactivating this shelf')});
         });
     }));
 

@@ -18,8 +18,8 @@ define('forms_local',
         var operator = operators.get.current();
         var data = {
             apps: get_app_ids($('.apps-widget .result')),
-            background_image_upload_url: $form.find('section[data-aviary-type="feed-banner"] .processed-aviary-url').val(),
-            background_image_landing_upload_url: $form.find('section[data-aviary-type="shelf-landing"] .processed-aviary-url').val(),
+            background_image_upload_url: $form.find('[data-aviary-type="feed-banner"] .processed-aviary-url').val(),
+            background_image_landing_upload_url: $form.find('[data-aviary-type="shelf-landing"] .processed-aviary-url').val(),
             carrier: operator.carrier,
             description: utils_local.build_localized_field('description'),
             name: utils_local.build_localized_field('name'),

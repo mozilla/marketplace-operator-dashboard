@@ -1,7 +1,10 @@
-<div class="field" data-error-field="slug">
-  <label for="slug">{{ _('Slug') }}</label>
-  <input id="slug" name="slug" type="text" placeholder="my-slug"
-         {{ 'disabled' if obj }} {% if obj %}value="{{ obj.slug }}"{% endif %}>
-  {# L10n: Characters allowed in slug fields. #}
-  <p class="help-text">{{ _('Allowed: a-z, hyphen, integers') }}</p>
-</div>
+{% if obj %}
+  <input id="slug" name="slug" type="hidden" value="{{ obj.slug }}">
+{% else %}
+  <div class="field" data-error-field="slug">
+    <label for="slug">{{ _('Slug') }}</label>
+    <input id="slug" name="slug" type="text" placeholder="my-slug">
+    {# L10n: Characters allowed in slug fields. #}
+    <p class="help-text">{{ _('Allowed: a-z, hyphen, integers') }}</p>
+  </div>
+{% endif %}
