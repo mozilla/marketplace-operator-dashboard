@@ -12,7 +12,6 @@ define('aviary', ['defer', 'jquery', 'l10n', 'z'], function(defer, $, l10n, z) {
 
             // Replace the contents of the preview box + dimensions.
             preview($img.data('aviary-type'), newURL);
-            console.log($field);
             $field.find('.processed-aviary-url').val(newURL);
 
             // Close the editor.
@@ -147,10 +146,10 @@ define('aviary', ['defer', 'jquery', 'l10n', 'z'], function(defer, $, l10n, z) {
     }).on('click', '.aviary .clear-image', function() {
         var $parent = $(this).closest('.aviary');
         $parent.find('input').val('');
-        $parent.find('.preview').attr('src', '').hide();
+        z.page.trigger('refresh_preview');
     });
 
     return {
         launchEditor: launchEditor
-    }
+    };
 });

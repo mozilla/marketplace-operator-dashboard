@@ -1,0 +1,30 @@
+<div id="shelf-preview">
+
+  <section data-for="feed">
+    <h3>{{ _('Feed') }}</h3>
+    <div class="phone">
+      <div class="screen">
+        <div class="item">
+          <img id="aviary-feed-banner" class="preview" data-aviary-type="feed-banner" data-placeholder="{{ media('img/sample/feed.jpg') }}" src="{{ obj.background_image or media('img/sample/feed.jpg') }}">
+          <div class="curve" data-region="{{ current_operator.region }}" data-carrier="{{ current_operator.carrier }}"></div>
+          <div class="title" data-placeholder="{{ _('Example Title') }}">{{ obj.name['en-US'] or _('Example Title') }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-for="detail">
+    <h3>{{ _('Detail') }}</h3>
+    <div class="phone">
+      <div class="screen">
+        <div class="item">
+          <img id="aviary-shelf-landing" class="preview" data-aviary-type="shelf-landing" data-placeholder="{{ media('img/sample/detail.jpg') }}" src="{{ obj.background_image_landing or media('img/sample/detail.jpg') }}">
+          <div class="curve" data-region="{{ current_operator.region }}" data-carrier="{{ current_operator.carrier }}"></div>
+          <div class="title" data-placeholder="{{ _('Example Title') }}">{{ obj.name['en-US'] or _('Example Title') }}</div>
+        </div>
+        <div class="description"></div>
+      </div>
+    </div>
+  </section>
+
+</div>

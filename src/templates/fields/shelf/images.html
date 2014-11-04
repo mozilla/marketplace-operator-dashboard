@@ -3,13 +3,13 @@
 <div class="field background-image" data-error-field="background-image">
   <label>{{ _('On Feed') }}</label>
   <div class="inner">
-    {{ aviary_image_file_input(_('Feed Banner'), 'feed-banner', obj.background_image, feed_type, '300x90') }}
+    {{ aviary_image_file_input(_('Feed Banner'), 'feed-banner', obj.background_image, '300x90') }}
   </div>
 </div>
 
 <div class="field background-image" data-error-field="background-image-landing">
   <label>{{ _('Detail Page') }}</label>
   <div class="inner">
-    {{ aviary_image_file_input(_('Shelf Landing'), 'shelf-landing', obj.background_image_landing, feed_type, '320x150') }}
+    {{ aviary_image_file_input(_('Shelf Landing'), 'shelf-landing', obj.background_image_landing, '320x150') }}
   </div>
 </div>

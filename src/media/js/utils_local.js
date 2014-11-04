@@ -10,7 +10,7 @@ define('utils_local', ['jquery', 'notification', 'nunjucks', 'z'],
     }
 
     function handle_error(errors) {
-        notification.notification({message: gettext('Sorry, we found some errors in the form.')});
+        notification.notification({message: gettext('Sorry, we found some errors in the form')});
         render_errors(errors);
     }
 

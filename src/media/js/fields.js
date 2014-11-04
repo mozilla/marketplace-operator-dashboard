@@ -38,6 +38,14 @@ define('fields', ['apps/widget', 'aviary', 'jquery', 'jquery.fakefilefield', 'un
         } else {
             $description.hide();
         }
+
+        // Update images
+        $('.processed-aviary-url').each(function() {
+            var $this = $(this);
+            var type = $this.closest('.aviary').data('aviary-type');
+            var $preview = $('img[data-aviary-type="' + type + '"]');
+            $preview.attr('src', $this.val() || $preview.data('placeholder'));
+        });
     })
 
     // Localization of text fields.

@@ -1,4 +1,4 @@
-{% macro aviary_image_file_input(name, slug, src, feed_type, crop) %}
+{% macro aviary_image_file_input(name, slug, src, crop) %}
   <section class="aviary background-image-input {{ slug }}" data-aviary-type="{{ slug }}"
            data-theme="light"
            {% if crop %}
@@ -7,8 +7,8 @@
            {% endif %}>
 
     {# Image URL input. #}
-    <input class="aviary-url" type="url" novalidate
-           placeholder="{{ _('Enter an image URL or select a file:') }}">
+    <input class="aviary-url" type="text" novalidate
+           placeholder="{{ _('Enter an image URL or select a file:') }}" value="{{ src or '' }}">
 
     {# Image input. #}
     <div class="fileinput" data-fileinput>
@@ -21,7 +21,7 @@
     <a class="button s cancel clear-image">{{ _('Clear') }}</a>
 
     {# Data URI. #}
-    <input class="processed-aviary-url" type="hidden" name="image-{{ slug }}" value="{{ src if src }}">
+    <input class="processed-aviary-url" type="hidden" name="image-{{ slug }}" value="{{ src }}">
 
   </section>
 {% endmacro %}
