@@ -33,6 +33,7 @@ settings_local.js
 settings_local.py
 src/app.html
 src/server.html
+src/index.html
 src/locales/*
 src/media/build_id.txt
 src/media/css/include.css
