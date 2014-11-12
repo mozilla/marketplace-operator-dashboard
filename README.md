@@ -1,10 +1,11 @@
-Operator Dashboard
-==================
+The frontend for the Operator Dashboard for the Firefox Marketplace. Allows
+operators and carriers to manage their Operator Shelves, or app collections.
 
-Powered by [Commonplace](http://github.com/mozilla/commonplace) components.
+- [Marketplace frontend documentation](https://marketplace-frontend.readthedocs.org)
+- [Marketplace documentation](https://marketplace.readthedocs.org)
+- [Marketplace API documentation](https://firefox-marketplace-api.readthedocs.org)
 
-Read the [Commonplace wiki](https://github.com/mozilla/commonplace/wiki/_pages)
-for usage.
+## Installation
 
 - ```make init```
 - ```make serve```
