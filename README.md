@@ -7,5 +7,8 @@ operators and carriers to manage their Operator Shelves, or app collections.
 
 ## Installation
 
-- ```make init```
-- ```make serve```
+```bash
+npm install
+make install
+make serve
+```
