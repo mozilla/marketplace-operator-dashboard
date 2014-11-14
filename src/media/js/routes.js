@@ -11,6 +11,7 @@ var routes = window.routes = [
     {'pattern': root + '/error$', 'view_name': 'error'},
     {'pattern': root + '/unauthorized$', 'view_name': 'unauthorized'},
     {'pattern': root + '/login$', 'view_name': 'login'},
+    {'pattern': '^/fxa-authorize$', 'view_name': 'fxa_authorize'},
 ];
 
 define('routes', [
@@ -21,6 +22,7 @@ define('routes', [
     'views/error',
     'views/unauthorized',
     'views/login',
+    'views/fxa_authorize',
 ], function() {
     for (var i = 0; i < routes.length; i++) {
         var route = routes[i];

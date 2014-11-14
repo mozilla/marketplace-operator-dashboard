@@ -46,7 +46,8 @@ function() {
         if (url == urls.reverse('login') ||
             url == urls.reverse('unauthorized')) {
             return;
-        } else if (!user.logged_in()) {
+        } else if (!user.logged_in() &&
+                   window.location.pathname !== urls.reverse('fxa_authorize')) {
             z.page.trigger('divert', [urls.reverse('login')]);
         } else if (!operators.get.all()) {
             z.page.trigger('divert', [urls.reverse('unauthorized')]);
