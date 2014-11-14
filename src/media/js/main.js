@@ -44,10 +44,10 @@ function() {
     // Redirect to login/unauthorized pages if necessary.
     z.page.on('navigate divert', function(e, url) {
         if (url == urls.reverse('login') ||
-            url == urls.reverse('unauthorized')) {
+            url == urls.reverse('unauthorized') ||
+            url == urls.reverse('fxa_authorize')) {
             return;
-        } else if (!user.logged_in() &&
-                   window.location.pathname !== urls.reverse('fxa_authorize')) {
+        } else if (!user.logged_in()) {
             z.page.trigger('divert', [urls.reverse('login')]);
         } else if (!operators.get.all()) {
             z.page.trigger('divert', [urls.reverse('unauthorized')]);
@@ -55,7 +55,8 @@ function() {
     });
 
     console.log('Initialization complete');
-    z.page.trigger('navigate', [window.location.pathname]);
+    z.page.trigger('navigate', [window.location.pathname +
+                                window.location.search]);
     z.page.trigger('reload_chrome');
 
     // Show login screen when user logs out.
