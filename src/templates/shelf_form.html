@@ -1,4 +1,8 @@
-<form class="c" id="shelf-{{ 'edit' if obj else 'create' }}">
+{% if obj %}
+  <form class="c" id="shelf-edit" data-slug="{{ obj.slug }}">
+{% else %}
+  <form class="c" id="shelf-create">
+{% endif %}
 
   <div id="shelf-form">
     {% include 'fields/locale.html' %}
@@ -15,8 +19,12 @@
       {% include 'fields/apps/multiple.html' %}
     </section>
 
-    <section class="island submit">
-      <button class="button" type="submit">{{ _('Submit') }}</button>
+    <section class="island buttons">
+      <button class="button submit" type="submit">{{ _('Submit') }}</button>
+      {% if obj %}
+        <button class="button cancel delete">{{ _('Delete') }}</button>
+      {% endif %}
+       <div class="form-errors"></div>
     </section>
 
   </div>

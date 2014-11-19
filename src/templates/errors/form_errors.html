@@ -1,5 +1,5 @@
 <ul>
   {% for field, message in errors %}
-    <li>{{ field }}: {{ message }}</li>
+    <li>{% if field != 'detail' %}{{ field }}: {% endif %}{{ message }}</li>
   {% endfor %}
 </ul>

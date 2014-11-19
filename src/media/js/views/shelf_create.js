@@ -3,7 +3,7 @@ define('views/shelf_create', ['apps/widget', 'fields', 'forms_local', 'l10n', 'n
 
     var gettext = l10n.gettext;
 
-    z.body.on('click', '#shelf-create .submit button', utils._pd(function(e) {
+    z.body.on('click', '#shelf-create .buttons button', utils._pd(function(e) {
         var $button = $(this);
         var $form = $button.closest('form');
         $button.data('text', $button.text()).text(gettext('Creating...')).prop('disabled', true);
