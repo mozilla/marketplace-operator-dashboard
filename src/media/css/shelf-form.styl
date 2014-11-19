@@ -196,6 +196,8 @@ $grameenphone_regions = (bd);
 $grameenphone_color = #00ACE7;
 $tmobile_regions = (hu pl);
 $tmobile_color = #E20074;
+$kddi_regions = (jp)
+$kddi_color = #E35205;
 
 .curve {
     background-color: rgba($default_shelf_color, 0.6);
@@ -237,6 +239,13 @@ $tmobile_color = #E20074;
         for region in $tmobile_regions {
             [data-region={region}]& {
                 background-color: rgba($tmobile_color, 0.6);
+            }
+        }
+    }
+    [data-carrier="kddi"]& {
+        for region in $kddi_regions {
+            [data-region={region}]& {
+                background-color: rgba($kddi_color, 0.6);
             }
         }
     }
