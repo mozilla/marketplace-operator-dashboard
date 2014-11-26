@@ -3,8 +3,8 @@
     an active one used by the tool.
 */
 
-define('operators', ['defer', 'jquery', 'nunjucks', 'requests', 'storage', 'urls', 'z'],
-    function(defer, $, nunjucks, requests, storage, urls, z) {
+define('operators', ['defer', 'jquery', 'nunjucks', 'requests', 'settings', 'storage', 'urls', 'z'],
+    function(defer, $, nunjucks, requests, settings, storage, urls, z) {
 
     var console = require('log')('operators');
     var ALL_OPERATORS_KEY = 'operators_all';
@@ -53,7 +53,23 @@ define('operators', ['defer', 'jquery', 'nunjucks', 'requests', 'storage', 'urls
     function fetch() {
         var def = defer.Deferred();
         requests.get(urls.api.url('permissions')).done(function(data) {
-            var operators = data.objects;
+            var operators;
+
+            if (data[0] == '*') {
+                operators = [];
+                $.each(settings.carriers, function(i, carrier) {
+                    $.each(Object.keys(settings.REGION_CHOICES_SLUG), function(i, region) {
+                        operators.push({
+                            'carrier': carrier,
+                            'region': region
+                        });
+                    });
+                });
+
+            } else {
+                operators = data.objects;
+            }
+
             console.log('Received operators from server', operators);
             setAll(operators);
 
@@ -90,9 +106,10 @@ define('operators', ['defer', 'jquery', 'nunjucks', 'requests', 'storage', 'urls
     // Handle submission of the operator selection form.
     }).on('submit', '#operator_selection form', function(evt) {
         evt.preventDefault();
-        var $selected = $('#operator_selection option:selected');
-        if ($selected.data('carrier')) {
-            setCurrent($selected.data('carrier'), $selected.data('region'));
+        var region = $('#operator_selection option[data-region]:selected').data('region');
+        var carrier = $('#operator_selection option[data-carrier]:selected').data('carrier');
+        if (carrier && region) {
+            setCurrent(carrier, region);
         } else {
             z.body.removeClass('show-operator_selection');
         }

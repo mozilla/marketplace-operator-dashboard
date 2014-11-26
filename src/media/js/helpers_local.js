@@ -7,6 +7,9 @@ define('helpers_local', ['nunjucks', 'operators'],
     // Filter operator shelves that do not belong to the current operator.
     filters.for_current = function(shelves) {
         var current = operators.get.current();
+        if (!current) {
+            return [];
+        }
         return shelves.filter(function(shelf) {
             return (shelf.carrier == current.carrier &&
                     shelf.region == current.region);

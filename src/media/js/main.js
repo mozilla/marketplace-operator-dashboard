@@ -11,6 +11,7 @@ define(
         'login',  // Comment this if your app does not have accounts.
         'navigation',
         'operators',
+        'settings',
         'templates',
         'user',  // Comment this if your app does not have accounts.
         'z'
@@ -18,6 +19,7 @@ define(
 function() {
     var console = require('log')('main');
     var operators = require('operators');
+    var settings = require('settings');
     var storage = require('storage');
     var urls = require('urls');
     var user = require('user');
@@ -33,7 +35,9 @@ function() {
         var nunjucks = require('templates');
         $('#site-header').html(nunjucks.env.render('header.html', {
             all_operators: operators.get.all(),
-            current_operator: operators.get.current()
+            current_operator: operators.get.current(),
+            carriers: settings.carriers,
+            regions: settings.REGION_CHOICES_SLUG
         }));
         $('#site-footer').html(
             nunjucks.env.render('footer.html'));
