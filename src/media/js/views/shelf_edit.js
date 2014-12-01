@@ -24,20 +24,29 @@ define('views/shelf_edit', ['apps/widget', 'fields', 'format', 'forms_local', 'l
     return function(builder, args) {
         var url = urls.api.base.url('feed-shelf', [args[0]]);
         requests.get(url, true).done(function(obj) {
-            builder.start('shelf_form.html', {
-                current_operator: operators.get.current(),
-                obj: obj,
-                // L10n: this indicates the name of the operator shelf being edited.
-                title: format.format(gettext('Editing {0}'), obj.slug)
-            }).done(function() {
-                fields.highlight_localized();
-                z.page.trigger('refresh_preview');
-                obj.apps.forEach(function(app) {
-                    apps_widget.append(app);
+
+            // Ensure that the shelf being edited belongs to the active operator.
+            var current_operator = operators.get.current();
+            if (obj.carrier != current_operator.carrier ||
+                obj.region != current_operator.region) {
+                z.page.trigger('navigate', [urls.reverse('shelf_listing')]);
+
+            } else {
+                builder.start('shelf_form.html', {
+                    current_operator: current_operator,
+                    obj: obj,
+                    // L10n: this indicates the name of the operator shelf being edited.
+                    title: format.format(gettext('Editing {0}'), obj.slug)
+                }).done(function() {
+                    fields.highlight_localized();
+                    z.page.trigger('refresh_preview');
+                    obj.apps.forEach(function(app) {
+                        apps_widget.append(app);
+                    });
                 });
-            });
-            builder.z('type', 'shelf_form shelf_edit');
-            builder.z('title', gettext('Editing'));
+                builder.z('type', 'shelf_form shelf_edit');
+                builder.z('title', gettext('Editing'));
+            }
         });
 
     };
