@@ -98,3 +98,19 @@
         display: none;
     }
 }
+
+[data-operator-count="0"],
+[data-operator-count="1"] {
+    #operator_selection {
+        display: none !important;
+    }
+    #current_operator {
+        cursor: default;
+        &:hover {
+            text-decoration: none;
+        }
+        &:after {
+            display: none;
+        }
+    }
+}

@@ -33,12 +33,13 @@ function() {
     z.page.on('reload_chrome', function() {
         console.log('Reloading chrome');
         var nunjucks = require('templates');
+        var all_operators = operators.get.all();
         $('#site-header').html(nunjucks.env.render('header.html', {
-            all_operators: operators.get.all(),
+            all_operators: all_operators,
             current_operator: operators.get.current(),
             carriers: settings.carriers,
             regions: settings.REGION_CHOICES_SLUG
-        }));
+        })).attr('data-operator-count', all_operators.length);
         $('#site-footer').html(
             nunjucks.env.render('footer.html'));
         z.body.toggleClass('logged-in', require('user').logged_in());
