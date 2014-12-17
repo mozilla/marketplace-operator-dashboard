@@ -1,6 +1,8 @@
 define('apps/selector',
-    ['jquery', 'format', 'l10n', 'log', 'requests', 'settings', 'templates', 'underscore', 'urls', 'utils', 'z'],
-    function($, format, l10n, log, requests, settings, nunjucks, _, urls, utils, z) {
+    ['jquery', 'format', 'l10n', 'log', 'regions', 'requests', 'settings',
+     'templates', 'underscore', 'urls', 'utils', 'z'],
+    function($, format, l10n, log, regions, requests, settings,
+             nunjucks, _, urls, utils, z) {
     'use strict';
 
     var gettext = l10n.gettext;
@@ -48,7 +50,7 @@ define('apps/selector',
     function get_disabled_regions(app) {
         // Given app, do set difference between all regions and app's regions
         // to get the disabled regions.
-        return Object.keys(settings.REGION_CHOICES_SLUG).filter(function(slug) {
+        return Object.keys(regions.REGION_CHOICES_SLUG).filter(function(slug) {
             return app.regions
                       .map(function(region) { return region.slug; })
                       .indexOf(slug) < 0;

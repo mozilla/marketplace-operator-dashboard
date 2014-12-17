@@ -35,41 +35,6 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'sk', 'tr', 'zh-CN'
         ],
 
-        // A list of regions and their L10n mappings.
-        REGION_CHOICES_SLUG: {
-            'restofworld': gettext('Rest of World'),
-            'ar': gettext('Argentina'),
-            'bd': gettext('Bangladesh'),
-            'br': gettext('Brazil'),
-            'cl': gettext('Chile'),
-            'cn': gettext('China'),
-            'co': gettext('Colombia'),
-            'cr': gettext('Costa Rica'),
-            'cz': gettext('Czech Republic'),
-            'ec': gettext('Ecuador'),
-            'sv': gettext('El Salvador'),
-            'fr': gettext('France'),
-            'de': gettext('Germany'),
-            'gr': gettext('Greece'),
-            'gt': gettext('Guatemala'),
-            'hu': gettext('Hungary'),
-            'in': gettext('India'),
-            'it': gettext('Italy'),
-            'jp': gettext('Japan'),
-            'mx': gettext('Mexico'),
-            'me': gettext('Montenegro'),
-            'ni': gettext('Nicaragua'),
-            'pa': gettext('Panama'),
-            'pe': gettext('Peru'),
-            'pl': gettext('Poland'),
-            'rs': gettext('Serbia'),
-            'es': gettext('Spain'),
-            'uk': gettext('United Kingdom'),
-            'us': gettext('United States'),
-            'uy': gettext('Uruguay'),
-            've': gettext('Venezuela')
-        },
-
         carriers: [
             'america_movil',
             'china_unicom',
