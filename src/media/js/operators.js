@@ -3,8 +3,8 @@
     an active one used by the tool.
 */
 
-define('operators', ['defer', 'jquery', 'nunjucks', 'requests', 'settings', 'storage', 'urls', 'z'],
-    function(defer, $, nunjucks, requests, settings, storage, urls, z) {
+define('operators', ['defer', 'jquery', 'nunjucks', 'regions', 'requests', 'settings', 'storage', 'urls', 'z'],
+    function(defer, $, nunjucks, regions, requests, settings, storage, urls, z) {
 
     var console = require('log')('operators');
     var ALL_OPERATORS_KEY = 'operators_all';
@@ -58,7 +58,7 @@ define('operators', ['defer', 'jquery', 'nunjucks', 'requests', 'settings', 'sto
             if (data[0] == '*') {
                 operators = [];
                 $.each(settings.carriers, function(i, carrier) {
-                    $.each(Object.keys(settings.REGION_CHOICES_SLUG), function(i, region) {
+                    $.each(Object.keys(regions.REGION_CHOICES_SLUG), function(i, region) {
                         operators.push({
                             'carrier': carrier,
                             'region': region
