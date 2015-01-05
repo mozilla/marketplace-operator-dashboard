@@ -11,6 +11,7 @@ define(
         'login',  // Comment this if your app does not have accounts.
         'navigation',
         'operators',
+        'regions',
         'settings',
         'templates',
         'user',  // Comment this if your app does not have accounts.
@@ -19,6 +20,7 @@ define(
 function() {
     var console = require('log')('main');
     var operators = require('operators');
+    var regions = require('regions');
     var settings = require('settings');
     var storage = require('storage');
     var urls = require('urls');
@@ -38,7 +40,7 @@ function() {
             all_operators: all_operators,
             current_operator: operators.get.current(),
             carriers: settings.carriers,
-            regions: settings.REGION_CHOICES_SLUG
+            regions: regions.REGION_CHOICES_SLUG
         })).attr('data-operator-count', all_operators.length);
         $('#site-footer').html(
             nunjucks.env.render('footer.html'));
