@@ -46,6 +46,7 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
             'kddi',
             'kt',
             'megafon',
+            'mtn',
             'o2',
             'qtel',
             'singtel',
