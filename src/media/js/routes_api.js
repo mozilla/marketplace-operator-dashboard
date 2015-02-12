@@ -9,7 +9,7 @@ define('routes_api', [], function() {
         'fxa-login': '/api/v2/account/fxa-login/',
         'login': '/api/v2/account/login/',
         'logout': '/api/v2/account/logout/',
-        'search': '/api/v1/apps/search/suggest/non-public/?cache=1&vary=0',
+        'search': '/api/v1/apps/search/non-public/?cache=1&vary=0',
         'site-config': '/api/v2/services/config/site/?serializer=commonplace',
         'permissions': '/api/v2/account/operators/',
         'feed-shelves': '/api/v2/feed/shelves/',
