@@ -2,11 +2,14 @@
     Handles the retrieval of operators (region/carrier pairs) and selection of
     an active one used by the tool.
 */
-
-define('operators', ['defer', 'jquery', 'nunjucks', 'regions', 'requests', 'settings', 'storage', 'urls', 'z'],
-    function(defer, $, nunjucks, regions, requests, settings, storage, urls, z) {
-
-    var console = require('log')('operators');
+define('operators',
+    ['core/defer', 'core/log', 'core/nunjucks', 'core/requests',
+     'core/settings', 'core/storage', 'core/urls', 'core/z', 'jquery',
+     'regions'],
+    function(defer, log, nunjucks, requests,
+             settings, storage, urls, z, $,
+             regions) {
+    var console = log('operators');
     var ALL_OPERATORS_KEY = 'operators_all';
     var CURRENT_OPERATOR_KEY = 'operators_current';
 

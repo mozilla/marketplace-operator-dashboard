@@ -1,4 +1,6 @@
-define('views/login', ['l10n', 'user', 'urls', 'z'], function(l10n, user, urls, z) {
+define('views/login',
+    ['core/l10n', 'core/urls', 'core/user', 'core/z'],
+    function(l10n, urls, user, z) {
     var gettext = l10n.gettext;
     return function(builder) {
         if (user.logged_in()) {

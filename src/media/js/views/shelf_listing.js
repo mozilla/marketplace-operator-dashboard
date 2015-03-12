@@ -1,6 +1,8 @@
-define('views/shelf_listing', ['jquery', 'l10n', 'notification', 'requests', 'urls', 'utils', 'z'],
-	function($, l10n, notification, requests, urls, utils, z) {
-
+define('views/shelf_listing',
+    ['core/l10n', 'core/notification', 'core/requests', 'core/urls',
+     'core/utils', 'core/z', 'jquery'],
+	function(l10n, notification, requests, urls,
+             utils, z, $) {
     var gettext = l10n.gettext;
 
     z.body.on('click', '.inactive-shelves .activate', utils._pd(function(e) {

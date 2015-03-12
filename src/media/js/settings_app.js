@@ -1,5 +1,6 @@
-define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, settings_local, _) {
-    var gettext = l10n.gettext;
+define('settings_app',
+    ['core/settings', 'settings_local'],
+    function(settings, settingsLocal) {
 
      function offline_cache_enabled() {
         var storage = require('storage');
@@ -9,8 +10,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         return window.location.search.indexOf('cache=false') === -1;
     }
 
-    return _.defaults(settings_local, {
-        app_name: 'commonplace app',
+    settings._extend({
+        app_name: 'Operator Dashboard',
         init_module: 'main',
         default_locale: 'en-US',
         api_url: 'http://' + window.location.hostname,  // No trailing slash, please.
@@ -76,6 +77,8 @@ define('settings', ['l10n', 'settings_local', 'underscore'], function(l10n, sett
         persona_tos: null,
         persona_privacy: null,
 
-        title_suffix: 'Commonplace App'
+        title_suffix: 'Operator Dashboard'
     });
+
+    settings._extend(settingsLocal);
 });

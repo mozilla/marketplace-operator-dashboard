@@ -1,5 +1,10 @@
-define('views/shelf_create', ['apps/widget', 'fields', 'forms_local', 'l10n', 'notification', 'operators', 'user', 'utils', 'utils_local', 'urls', 'z'],
-	function(apps_widget, fields, forms, l10n, notification, operators, user, utils, utils_local, urls, z) {
+define('views/shelf_create',
+    ['apps/widget', 'core/l10n', 'core/notification', 'core/urls', 'core/user',
+     'core/utils', 'core/z', 'fields', 'forms_local', 'operators',
+     'utils_local'],
+    function(apps_widget, l10n, notification, urls, user,
+             utils, z, fields, forms, operators,
+             utils_local) {
 
     var gettext = l10n.gettext;
 

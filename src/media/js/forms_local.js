@@ -1,6 +1,8 @@
 define('forms_local',
-    ['cache', 'defer', 'jquery', 'log', 'operators', 'requests', 'urls', 'utils_local', 'validate_local'],
-    function(cache, defer, $, log, operators, requests, urls, utils_local, validate) {
+    ['core/cache', 'core/defer', 'core/log', 'core/requests', 'core/urls',
+     'jquery', 'operators', 'utils_local', 'validate_local'],
+    function(cache, defer, log, requests, urls,
+             $, operators, utils_local, validate) {
     'use strict';
 
     var console = log('forms');

@@ -1,5 +1,8 @@
-define('fields', ['apps/widget', 'aviary', 'jquery', 'jquery.fakefilefield', 'underscore', 'utils', 'z'],
-    function(apps_widget, aviary, $, fakefilefield, _,utils, z) {
+define('fields',
+    ['apps/widget', 'aviary', 'core/utils', 'core/z', 'jquery',
+     'jquery.fakefilefield', 'underscore'],
+    function(apps_widget, aviary, utils, z, $,
+             fakefilefield, _) {
     'use strict';
 
     function updateCharCount() {
