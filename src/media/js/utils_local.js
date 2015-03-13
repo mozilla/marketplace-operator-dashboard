@@ -1,5 +1,6 @@
-define('utils_local', ['jquery', 'notification', 'nunjucks', 'z'],
-	function($, notification, nunjucks, z) {
+define('utils_local',
+    ['core/notification', 'core/nunjucks', 'core/z', 'jquery'],
+	function(notification, nunjucks, z, $) {
 
     function build_localized_field(name) {
         var data = {};

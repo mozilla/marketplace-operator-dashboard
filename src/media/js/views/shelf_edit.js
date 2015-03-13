@@ -1,6 +1,10 @@
-define('views/shelf_edit', ['apps/widget', 'fields', 'format', 'forms_local', 'l10n', 'notification', 'operators', 'requests', 'user', 'utils', 'utils_local', 'urls', 'z'],
-	function(apps_widget, fields, format, forms, l10n, notification, operators, requests, user, utils, utils_local, urls, z) {
-
+define('views/shelf_edit',
+    ['core/format', 'core/l10n', 'core/notification', 'core/requests',
+     'core/urls', 'core/utils', 'core/user', 'core/z', 'apps/widget', 'fields',
+     'forms_local', 'operators', 'utils_local'],
+	function(format, l10n, notification, requests,
+             urls, utils, user, z, apps_widget, fields,
+             forms, operators, utils_local) {
     var gettext = l10n.gettext;
 
     z.body.on('click', '#shelf-edit .submit button', utils._pd(function(e) {

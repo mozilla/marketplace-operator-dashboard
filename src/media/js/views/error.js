@@ -1,4 +1,6 @@
-define('views/error', ['l10n', 'user', 'urls', 'z'], function(l10n, user, urls, z) {
+define('views/error',
+    ['core/l10n', 'core/urls', 'core/user', 'core/z'],
+    function(l10n, urls, user, z) {
     var gettext = l10n.gettext;
     return function(builder) {
         builder.start('errors/http.html');

@@ -1,4 +1,6 @@
-define('aviary', ['defer', 'jquery', 'l10n', 'z'], function(defer, $, l10n, z) {
+define('aviary',
+    ['core/defer', 'core/l10n', 'core/z', 'jquery'],
+    function(defer, l10n, z, $) {
     var gettext = l10n.gettext;
 
     // Read the Aviary docs for reference:

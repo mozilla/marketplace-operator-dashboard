@@ -1,8 +1,11 @@
 define('apps/selector',
-    ['jquery', 'format', 'l10n', 'log', 'regions', 'requests', 'settings',
-     'templates', 'underscore', 'urls', 'utils', 'z'],
-    function($, format, l10n, log, regions, requests, settings,
-             nunjucks, _, urls, utils, z) {
+    ['core/format', 'core/l10n', 'core/log', 'core/nunjucks', 'core/requests',
+     'core/settings', 'core/urls', 'core/utils', 'core/z', 'jquery',
+     'regions', 'underscore',
+    ],
+    function(format, l10n, log, nunjucks, requests,
+             settings, urls, utils, z, $,
+             regions, _) {
     'use strict';
 
     var gettext = l10n.gettext;

@@ -1,40 +1,32 @@
-console.log('Sample Commonplace App');
+console.log('Firefox Marketplace Operator Dashboard');
 
-define(
-    'main',
-    [
-        'helpers',  // Must come before mostly everything else.
-        'helpers_local',
-        'forms',  // Comment this if your app has no forms.
-        'l10n',
-        'log',
-        'login',  // Comment this if your app does not have accounts.
-        'navigation',
-        'operators',
-        'regions',
-        'settings',
-        'templates',
-        'user',  // Comment this if your app does not have accounts.
-        'z'
-    ],
-function() {
-    var console = require('log')('main');
+define('main', ['init'], function() {
+require([
+    'core/forms',  // Comment this if your app has no forms.
+    'core/login',  // Comment this if your app does not have accounts.
+    'core/user',  // Comment this if your app does not have accounts.
+    'operators',
+    'regions',
+    'templates',
+], function() {
+    var logger = require('core/log')('main');
     var operators = require('operators');
     var regions = require('regions');
-    var settings = require('settings');
-    var storage = require('storage');
-    var urls = require('urls');
-    var user = require('user');
-    var z = require('z');
+    var l10n = require('core/l10n');
+    var nunjucks = require('core/nunjucks');
+    var settings = require('core/settings');
+    var storage = require('core/storage');
+    var urls = require('core/urls');
+    var user = require('core/user');
+    var z = require('core/z');
 
-    console.log('Dependencies resolved, starting init');
+    logger.log('Dependencies resolved, starting init');
 
-    z.body.addClass('html-' + require('l10n').getDirection());
+    z.body.addClass('html-' + l10n.getDirection());
 
     // Compile header and footer.
     z.page.on('reload_chrome', function() {
-        console.log('Reloading chrome');
-        var nunjucks = require('templates');
+        logger.log('Reloading chrome');
         var all_operators = operators.get.all();
         $('#site-header').html(nunjucks.env.render('header.html', {
             all_operators: all_operators,
@@ -44,7 +36,7 @@ function() {
         })).attr('data-operator-count', all_operators.length);
         $('#site-footer').html(
             nunjucks.env.render('footer.html'));
-        z.body.toggleClass('logged-in', require('user').logged_in());
+        z.body.toggleClass('logged-in', user.logged_in());
         z.page.trigger('reloaded_chrome');
     });
 
@@ -52,7 +44,7 @@ function() {
     z.page.on('navigate divert', function(e, url) {
         if (url == urls.reverse('login') ||
             url == urls.reverse('unauthorized') ||
-            url == urls.reverse('fxa_authorize')) {
+            url.indexOf(urls.reverse('core/fxa_authorize')) !== -1) {
             return;
         } else if (!user.logged_in()) {
             z.page.trigger('navigate', [urls.reverse('login')]);
@@ -61,7 +53,7 @@ function() {
         }
     });
 
-    console.log('Initialization complete');
+    logger.log('Initialization complete');
     z.page.trigger('navigate', [window.location.pathname +
                                 window.location.search]);
     z.page.trigger('reload_chrome');
@@ -75,12 +67,12 @@ function() {
 
     // Fetch operators on login.
     z.page.on('logged_in', function() {
-        console.log('Fetching operator operators');
+        logger.log('Fetching operator operators');
         operators.fetch().done(function(data) {
             z.page.trigger('navigate', [urls.reverse('home')]);
         }).fail(function(error_view) {
             z.page.trigger('divert', [urls.reverse(error_view)]);
         });
     });
-
+});
 });

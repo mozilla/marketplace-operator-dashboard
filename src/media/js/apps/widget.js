@@ -1,6 +1,10 @@
 define('apps/widget',
-    ['apps/selector', 'jquery', 'jquery-sortable', 'nunjucks', 'requests', 'settings', 'underscore', 'utils', 'urls', 'z'],
-    function(app_select, $, sortable, nunjucks, requests, settings, _, utils, urls, z) {
+    ['apps/selector', 'core/nunjucks', 'core/requests', 'core/settings',
+     'core/urls', 'core/utils', 'core/z', 'jquery', 'jquery-sortable',
+     'underscore'],
+    function(app_select, nunjucks, requests, settings,
+             urls, utils, z, $, sortable,
+             _) {
     'use strict';
 
     function get_app_ids() {

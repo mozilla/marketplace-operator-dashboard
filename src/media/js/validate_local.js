@@ -1,6 +1,6 @@
 define('validate_local',
-    ['defer', 'jquery', 'l10n', 'underscore', 'utils_local',],
-    function(defer, $, l10n, _, utils_local) {
+    ['core/defer', 'core/l10n', 'jquery', 'underscore', 'utils_local'],
+    function(defer, l10n, $, _, utils_local) {
     'use strict';
     var gettext = l10n.gettext;
 

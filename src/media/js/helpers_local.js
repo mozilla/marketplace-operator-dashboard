@@ -1,4 +1,5 @@
-define('helpers_local', ['nunjucks', 'operators'],
+define('helpers_local',
+    ['core/nunjucks', 'operators'],
     function(nunjucks, operators) {
 
     var filters = nunjucks.require('filters');
