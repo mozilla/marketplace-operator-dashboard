@@ -4,13 +4,11 @@
     "version": "0.0.1",
     "dependencies": {
         "marketplace-constants": "0.6.0",
-        "marketplace-core-modules": "2.1.0",
+        "marketplace-core-modules": "2.4.0",
+        "marketplace-jquery": "2.0.2",
 
         "almond": "0.2.9",
-        "jquery": "2.0.2",
         "requirejs": "2.1.4",
         "underscore": "1.4.4"
-    },
-    "ignore": [
-    ]
+    }
 }

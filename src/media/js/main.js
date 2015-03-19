@@ -1,26 +1,16 @@
 console.log('Firefox Marketplace Operator Dashboard');
 
-define('main', ['init'], function() {
-require([
-    'core/forms',  // Comment this if your app has no forms.
-    'core/login',  // Comment this if your app does not have accounts.
-    'core/user',  // Comment this if your app does not have accounts.
-    'operators',
-    'regions',
-    'templates',
-], function() {
-    var logger = require('core/log')('main');
-    var operators = require('operators');
-    var regions = require('regions');
-    var l10n = require('core/l10n');
-    var nunjucks = require('core/nunjucks');
-    var settings = require('core/settings');
-    var storage = require('core/storage');
-    var urls = require('core/urls');
-    var user = require('core/user');
-    var z = require('core/z');
-
-    logger.log('Dependencies resolved, starting init');
+define('main', ['init'], function(init) {
+init.done(function() {
+require(
+    [// Modules actually used in main.
+     'core/log', 'core/l10n', 'core/nunjucks', 'core/settings', 'core/storage',
+     'core/urls', 'core/user', 'core/z', 'operators', 'regions',
+     // Modules we require to initialize global stuff.
+     'core/forms', 'core/login'],
+    function(log, l10n, nunjucks, settings,
+             storage, urls, user, z, operators, regions) {
+    var logger = log('main');
 
     z.body.addClass('html-' + l10n.getDirection());
 
@@ -53,7 +43,6 @@ require([
         }
     });
 
-    logger.log('Initialization complete');
     z.page.trigger('navigate', [window.location.pathname +
                                 window.location.search]);
     z.page.trigger('reload_chrome');
@@ -74,5 +63,8 @@ require([
             z.page.trigger('divert', [urls.reverse(error_view)]);
         });
     });
+
+    logger.log('Done');
+});
 });
 });
