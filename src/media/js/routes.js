@@ -12,7 +12,7 @@ define('routes', ['core/router'], function(router) {
     ]);
 
     router.api.addRoutes({
-        'search': '/api/v2/apps/search/non-public/?cache=1&vary=0',
+        'search': '/api/v2/apps/search/no-region/?cache=1&vary=0',
         'site-config': '/api/v2/services/config/site/?serializer=commonplace',
         'permissions': '/api/v2/account/operators/',
         'feed-shelves': '/api/v2/feed/shelves/',
