@@ -2,10 +2,10 @@
   {% set desc = obj.description if obj else {} %}
   <label data-required-types="description">{{ _('Description') }}</label>
   {% for lang in settings.languages %}
-    {{ locale_textarea('description', lang, desc[lang], 300) }}
+    {{ locale_textarea('description', lang, desc[lang], 150) }}
   {% endfor %}
   <p class="help-text" data-for="description">
   	<span class="optional">{{ _('Optional; ') }}</span>
-  	<span class="char-count">{{ _('Maximum 300 characters.') }}</span>
+    <span class="char-count">{{ _('Maximum 150 characters.') }}</span>
   </p>
 </div>
