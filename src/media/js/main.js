@@ -4,11 +4,12 @@ define('main', ['init'], function(init) {
 init.done(function() {
 require(
     [// Modules actually used in main.
-     'core/log', 'core/l10n', 'core/nunjucks', 'core/settings', 'core/storage',
-     'core/urls', 'core/user', 'core/z', 'operators', 'regions',
+     'carriers', 'core/log', 'core/l10n', 'core/nunjucks', 'core/settings',
+     'core/storage', 'core/urls', 'core/user', 'core/z', 'operators',
+     'regions',
      // Modules we require to initialize global stuff.
      'core/forms', 'core/login'],
-    function(log, l10n, nunjucks, settings,
+    function(carriers, log, l10n, nunjucks, settings,
              storage, urls, user, z, operators, regions) {
     var logger = log('main');
 
@@ -21,7 +22,7 @@ require(
         $('#site-header').html(nunjucks.env.render('header.html', {
             all_operators: all_operators,
             current_operator: operators.get.current(),
-            carriers: settings.carriers,
+            carriers: carriers.CARRIER_SLUGS,
             regions: regions.REGION_CHOICES_SLUG
         })).attr('data-operator-count', all_operators.length);
         $('#site-footer').html(

@@ -3,10 +3,10 @@
     an active one used by the tool.
 */
 define('operators',
-    ['core/defer', 'core/log', 'core/nunjucks', 'core/requests',
+    ['carriers', 'core/defer', 'core/log', 'core/nunjucks', 'core/requests',
      'core/settings', 'core/storage', 'core/urls', 'core/z', 'jquery',
      'regions'],
-    function(defer, log, nunjucks, requests,
+    function(carriers, defer, log, nunjucks, requests,
              settings, storage, urls, z, $,
              regions) {
     var console = log('operators');
@@ -60,7 +60,7 @@ define('operators',
 
             if (data[0] == '*') {
                 operators = [];
-                $.each(settings.carriers, function(i, carrier) {
+                $.each(carriers.CARRIER_SLUGS, function(i, carrier) {
                     $.each(Object.keys(regions.REGION_CHOICES_SLUG), function(i, region) {
                         operators.push({
                             'carrier': carrier,
