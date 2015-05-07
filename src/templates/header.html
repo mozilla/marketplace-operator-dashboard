@@ -10,35 +10,15 @@
 
 <menu id="operator_selection">
   <form>
-
-    {# If there are more than 35 operators available, let's assume they're an admin and show each
-       possible carrier/region combination in two lists. #}
-    {% if all_operators|length > 35 %}
-      <label id="carriers">{{ _('Switch to:') }}</label>
-      <select name="carriers">
-        {% for carrier in carriers %}
-          <option data-carrier="{{ carrier }}"{% if carrier == current_operator.carrier %} selected{% endif %}>{{ carrier }}</option>
+    <label>{{ _('Switch to:') }}
+      <select>
+        {% for operator in all_operators %}
+            <option data-carrier="{{ operator.carrier }}" data-region="{{ operator.region }}" {% if operator.carrier == current_operator.carrier and operator.region == current_operator.region %} selected{% endif %}>
+              {{ operator.carrier }} / {{ operator.region }}
+            </option>
         {% endfor %}
       </select>
-      <select id="only_regions">
-        {% for slug, region in regions %}
-          <option data-region="{{ slug }}"{% if slug == current_operator.region %} selected{% endif %}>{{ region }}</option>
-        {% endfor %}
-      </select>
-
-    {# Otherwise, we'll just show the pairs in a single list. #}
-    {% else %}
-      <label>{{ _('Switch to:') }}
-        <select>
-          {% for operator in all_operators %}
-              <option data-carrier="{{ operator.carrier }}" data-region="{{ operator.region }}" {% if operator.carrier == current_operator.carrier and operator.region == current_operator.region %} selected{% endif %}>
-                {{ operator.carrier }} / {{ operator.region }}
-              </option>
-          {% endfor %}
-        </select>
-      </label>
-    {% endif %}
-
+    </label>
     <button class="button t action" type="Submit">{{ _('Go') }}</button>
   </form>
 </menu>

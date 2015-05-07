@@ -23,7 +23,6 @@ require(
             all_operators: all_operators,
             current_operator: operators.get.current(),
             carriers: carriers.CARRIER_SLUGS,
-            regions: regions.REGION_CHOICES_SLUG
         })).attr('data-operator-count', all_operators.length);
         $('#site-footer').html(
             nunjucks.env.render('footer.html'));

@@ -15,6 +15,7 @@ define('routes', ['core/router'], function(router) {
         'search': '/api/v2/apps/search/no-region/?cache=1&vary=0',
         'site-config': '/api/v2/services/config/site/?serializer=commonplace',
         'permissions': '/api/v2/account/operators/',
+        'regions': '/api/v2/services/region/',
         'feed-shelves': '/api/v2/feed/shelves/',
         'feed-shelves-list': '/api/v2/transonic/feed/shelves/?limit=5',
         'feed-shelf': '/api/v2/feed/shelves/{0}/',
