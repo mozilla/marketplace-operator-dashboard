@@ -5,10 +5,10 @@
 define('operators',
     ['carriers', 'core/defer', 'core/log', 'core/nunjucks', 'core/requests',
      'core/settings', 'core/storage', 'core/urls', 'core/z', 'jquery',
-     'regions'],
+     'regions', 'underscore'],
     function(carriers, defer, log, nunjucks, requests,
              settings, storage, urls, z, $,
-             regions) {
+             regions, _) {
     var console = log('operators');
     var ALL_OPERATORS_KEY = 'operators_all';
     var CURRENT_OPERATOR_KEY = 'operators_current';
@@ -59,16 +59,31 @@ define('operators',
             var operators;
 
             if (data[0] == '*') {
+                // User is admin...
                 operators = [];
-                $.each(carriers.CARRIER_SLUGS, function(i, carrier) {
-                    $.each(Object.keys(regions.REGION_CHOICES_SLUG), function(i, region) {
+                $.each(carriers.MOBILE_CODES, function(mcc, infos) {
+                    var carriers_for_this_region = [];
+                    if (!regions.MOBILE_CODES[mcc]) {
+                        return;
+                    }
+                    $.each(infos, function(mnc, carrier) {
+                        // If carrier is not a string, it's going to be an
+                        // object with spn -> carrier.
+                        if (typeof carrier != 'string') {
+                            $.each(carrier, function(spn, slug) {
+                                carriers_for_this_region.push(slug);
+                            });
+                        } else {
+                            carriers_for_this_region.push(carrier);
+                        }
+                    });
+                    $.each(_.uniq(carriers_for_this_region), function(i, car) {
                         operators.push({
-                            'carrier': carrier,
-                            'region': region
+                            carrier: car,
+                            region: regions.MOBILE_CODES[mcc]
                         });
                     });
                 });
-
             } else {
                 operators = data.objects;
             }
