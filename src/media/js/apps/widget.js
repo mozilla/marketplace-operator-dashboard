@@ -15,6 +15,12 @@ define('apps/widget',
         return ids;
     }
 
+    function get_apps() {
+        return $('.apps-widget .result').map(function() {
+            return $(this).data('app');
+        });
+    }
+
     z.page.on('click', '.apps-widget .actions .delete', function() {
         /* Remove app. */
         $(this).closest('.result').remove();
@@ -102,7 +108,9 @@ define('apps/widget',
 
         // Render it in the widget.
         var $apps_widget = $('.apps-widget');
-        $apps_widget.find('.apps').append(app_select.render_result(app, true));
+        var $row = $(app_select.render_result(app, true));
+        $row.data('app', app);
+        $apps_widget.find('.apps').append($row);
         $apps_widget.find('.placeholder-text').hide();
         $apps_widget.find('.apps').sortable({
             onDrop: function($item) {
@@ -130,6 +138,7 @@ define('apps/widget',
     return {
         add_group: add_group,
         append: append,
+        get_apps: get_apps,
         get_app_ids: get_app_ids,
         set: set,
     };

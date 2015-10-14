@@ -1,8 +1,10 @@
 define('forms_local',
-    ['core/cache', 'core/defer', 'core/log', 'core/requests', 'core/urls',
-     'jquery', 'operators', 'utils_local', 'validate_local'],
-    function(cache, defer, log, requests, urls,
-             $, operators, utils_local, validate) {
+    ['apps/widget', 'core/cache', 'core/defer', 'core/log', 'core/requests',
+     'core/urls', 'jquery', 'operators', 'underscore', 'utils_local',
+     'validate_local'],
+    function(apps_widget, cache, defer, log, requests,
+             urls, $, operators, _, utils_local,
+             validate) {
     'use strict';
 
     var console = log('forms');
@@ -13,6 +15,48 @@ define('forms_local',
             return parseInt(app.getAttribute('data-id'), 10);
         });
     }
+
+    function difference(left, right) {
+        return _.reject(left, function(left) {
+            return _.some(right, function(right) {
+                return right.id === left.id;
+            });
+        });
+    }
+
+    var late_customization = function($form) {
+        var $initial_apps = $form.find('[name="initial_apps"]');
+        var initial_apps = JSON.parse($initial_apps.val());
+        var current_apps = apps_widget.get_apps();
+        var deleted_apps = difference(initial_apps, current_apps);
+        var created_apps = difference(current_apps, initial_apps);
+        return $.when(
+            delete_late_customizations(deleted_apps),
+            create_late_customizations(created_apps)).then(function() {
+                $initial_apps.val(JSON.stringify(apps_widget.get_apps()));
+            });
+    };
+
+    var delete_late_customizations = function(apps) {
+        var deletions = apps.map(function(app) {
+            return requests.del(urls.api.url('late-customization',
+                                             [app.latecustomization_id]));
+        });
+        return $.when.apply($, deletions);
+    };
+
+    var create_late_customizations = function(apps) {
+        var operator = operators.get.current();
+        var creations = apps.map(function(app) {
+            return requests.post(urls.api.url('late-customizations'), {
+                carrier: operator.carrier,
+                region: operator.region,
+                type: 'webapp',
+                app: app.id,
+            });
+        });
+        return $.when.apply($, creations);
+    };
 
     var shelf = function($form, slug) {
         /* Create or update FeedShelf. */
@@ -95,6 +139,7 @@ define('forms_local',
     }
 
     return {
+        late_customization: late_customization,
         shelf: shelf
     };
 });

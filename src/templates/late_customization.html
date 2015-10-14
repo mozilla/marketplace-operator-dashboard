@@ -1,0 +1,17 @@
+<form class="c" id="late-customization-form">
+  <div>
+    <section class="island">
+      <h2>{{ title }}</h2>
+    </section>
+
+    <input type="hidden" name="initial_apps" value="{{ initial_apps }}" />
+
+    <section class="island apps apps-multiple">
+      {% include 'fields/apps/multiple.html' %}
+    </section>
+
+    <section class="island submit">
+      <button class="button" type="submit">{{ _('Save') }}</button>
+    </section>
+  </div>
+</form>

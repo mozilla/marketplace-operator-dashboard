@@ -1,6 +1,12 @@
 {% include '_macros/shelf.html' %}
 
 <section class="main island">
+  <p>
+    <a href="{{ url('late_customization') }}">{{ _("Manage late customization set") }}</a>
+  </p>
+</section>
+
+<section class="main island">
 
   {% defer (url=api('feed-shelf-mine'), nocache=true) %}
     {% set active = this|for_current|active %}
